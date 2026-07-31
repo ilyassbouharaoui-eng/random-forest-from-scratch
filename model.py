@@ -9,6 +9,7 @@ import numpy as np
 # Step 1 - impurity
 def impurity(labels):
     """Return a non-negative impurity score for a 1D array of integer class labels."""
+    # TODO: score how mixed the labels are; 0 for a pure set, larger for more mixed sets.
     values,counts = np.unique(labels,return_counts=True)
     if (len(values)==0 )or (len(values) == 1) :
         return 0.0
@@ -20,7 +21,7 @@ def impurity(labels):
         return float(sum( -i*np.log(i) for i in p))
 
 # Step 2 - split_dataset
-
+import numpy as np
 
 def split_dataset(features, labels, feature_index, threshold):
     col = features[:,feature_index]
@@ -31,8 +32,11 @@ def split_dataset(features, labels, feature_index, threshold):
     ry = labels[~mask]
     return (lx,ly,rx,ry)
 
-# Step 3 - split_score (not yet solved)
-# TODO: implement
+# Step 3 - split_score
+def split_score(parent_labels, left_labels, right_labels):
+    xl = len(left_labels)/len(parent_labels)
+    xr = len(right_labels)/len(parent_labels)
+    return impurity(parent_labels) - (xl*impurity(left_labels) + xr*impurity(right_labels))
 
 # Step 4 - best_split (not yet solved)
 # TODO: implement

@@ -38,8 +38,24 @@ def split_score(parent_labels, left_labels, right_labels):
     xr = len(right_labels)/len(parent_labels)
     return impurity(parent_labels) - (xl*impurity(left_labels) + xr*impurity(right_labels))
 
-# Step 4 - best_split (not yet solved)
-# TODO: implement
+# Step 4 - best_split
+import numpy as np
+
+def best_split(features, labels, feature_indices):
+    dic = {'feature_index' : None,
+    'threshold' : None,
+    'score' : 0.0 }
+    for i in feature_indices:
+        x = features[:,i]
+        l = [(x[i] + x[i+1])/2  for i in range(len(x)-1) ]
+        for s in l : 
+            lX, ly, rX, ry = split_dataset(features, labels, i, s )
+            score = split_score(labels,ly,ry)
+            if score > dic['score'] :
+                dic['feature_index'] = i
+                dic['threshold'] = s
+                dic['score'] = score
+    return dic
 
 # Step 5 - should_stop (not yet solved)
 # TODO: implement

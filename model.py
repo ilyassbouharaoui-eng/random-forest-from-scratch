@@ -72,8 +72,25 @@ def leaf_prediction(labels):
     indice = np.argmax(oc)
     return int(l[indice])
 
-# Step 7 - build_tree (not yet solved)
-# TODO: implement
+# Step 7 - build_tree
+def build_tree(features, labels, max_depth=10, min_samples_split=2, feature_subset=None, depth=0):
+    while not should_stop(labels, depth, max_depth, min_samples_split) :
+        if feature_subset:
+            feature_indices = feature_subset
+        else:
+            feature_indices = range(len(features[0]))
+        d = best_split(features, labels, feature_indices)
+        res = {}
+        res['leaf'] = False
+        res['feature_index'] = d['feature_index']
+        res['threshold'] = d['threshold']
+        lx,ly,rx,ry = split_dataset(features, labels, res['feature_index'], res['threshold'] )
+        depth += 1
+        res['left'] =  build_tree(lx,ly,max_depth,min_samples_split,feature_subset,depth) 
+        res['right'] = build_tree(rx,ry,max_depth,min_samples_split,feature_subset,depth) 
+        return res
+    return {'leaf' : True,
+    'prediction' : leaf_prediction(labels)}
 
 # Step 8 - predict_example_tree (not yet solved)
 # TODO: implement

@@ -175,6 +175,12 @@ def predict_forest(forest, features):
         f[i] = predict_tree(tree,x)
     return combine_predictions(f)
 
-# Step 15 - accuracy (not yet solved)
-# TODO: implement
+# Step 15 - accuracy
+def accuracy(predictions, labels):
+    # compute the fraction of entries where predictions equals labels
+    s = 0
+    for i in range(len(predictions)):
+        if predictions[i] == labels[i]:
+            s+=1
+    return s/len(predictions)
 

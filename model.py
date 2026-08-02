@@ -130,7 +130,8 @@ import numpy as np
 
 def feature_subset(num_features, num_to_pick, rng):
     # return num_to_pick distinct random feature indices from range(num_features) using rng.
-    return rng.permutation(num_features)[:num_to_pick]
+    x = rng.permutation(num_features)[:num_to_pick] 
+    return   np.asarray(x, dtype=int)
 
 # Step 12 - train_forest
 import numpy as np

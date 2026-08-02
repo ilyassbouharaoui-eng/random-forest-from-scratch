@@ -1,7 +1,6 @@
 """
 Random Forest from Scratch
 
-Assembled from your step-by-step solutions.
 """
 
 import numpy as np
@@ -21,7 +20,7 @@ def impurity(labels):
         return float(sum( -i*np.log(i) for i in p))
 
 # Step 2 - split_dataset
-import numpy as np
+
 
 def split_dataset(features, labels, feature_index, threshold):
     col = features[:,feature_index]
@@ -39,7 +38,7 @@ def split_score(parent_labels, left_labels, right_labels):
     return impurity(parent_labels) - (xl*impurity(left_labels) + xr*impurity(right_labels))
 
 # Step 4 - best_split
-import numpy as np
+
 
 def best_split(features, labels, feature_indices):
     dic = {'feature_index' : None,
@@ -131,7 +130,7 @@ def bootstrap_sample(features, labels, rng):
     return x,y
 
 # Step 11 - feature_subset
-import numpy as np
+
 
 def feature_subset(num_features, num_to_pick, rng):
     # return num_to_pick distinct random feature indices from range(num_features) using rng.
@@ -139,7 +138,7 @@ def feature_subset(num_features, num_to_pick, rng):
     return   np.asarray(x, dtype=int)
 
 # Step 12 - train_forest
-import numpy as np
+
 
 def train_forest(features, labels, num_trees=10, max_depth=10, min_samples_split=2, num_features_per_split=None, random_state=0):
     #grow num_trees decision trees on bootstrap samples with random feature subsets.

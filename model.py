@@ -80,6 +80,11 @@ def build_tree(features, labels, max_depth=10, min_samples_split=2, feature_subs
         else:
             feature_indices = range(len(features[0]))
         d = best_split(features, labels, feature_indices)
+        if d['feature_index'] is None:
+            return {
+                'leaf': True,
+                'prediction': leaf_prediction(labels)
+            }
         res = {}
         res['leaf'] = False
         res['feature_index'] = d['feature_index']

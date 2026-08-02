@@ -165,8 +165,15 @@ def combine_predictions(tree_predictions):
         res[i] = l[np.argmax(c)]
     return res
 
-# Step 14 - predict_forest (not yet solved)
-# TODO: implement
+# Step 14 - predict_forest
+def predict_forest(forest, features):
+    # predict classes for a dataset using the whole trained forest.
+    f = np.zeros((len(forest),len(features)))
+    for i in range(len(forest)):
+        tree = forest[i]['tree']
+        x = features[:,forest[i]['feature_indices']]
+        f[i] = predict_tree(tree,x)
+    return combine_predictions(f)
 
 # Step 15 - accuracy (not yet solved)
 # TODO: implement

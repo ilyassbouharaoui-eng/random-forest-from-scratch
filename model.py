@@ -125,8 +125,12 @@ def bootstrap_sample(features, labels, rng):
         y[i] = labels[j] 
     return x,y
 
-# Step 11 - feature_subset (not yet solved)
-# TODO: implement
+# Step 11 - feature_subset
+import numpy as np
+
+def feature_subset(num_features, num_to_pick, rng):
+    # return num_to_pick distinct random feature indices from range(num_features) using rng.
+    return rng.permutation(num_features)[:num_to_pick]
 
 # Step 12 - train_forest (not yet solved)
 # TODO: implement

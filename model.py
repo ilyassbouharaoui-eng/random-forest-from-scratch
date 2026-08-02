@@ -115,8 +115,15 @@ def predict_tree(tree, features):
         res[i] = predict_example_tree(tree,features[i])
     return res
 
-# Step 10 - bootstrap_sample (not yet solved)
-# TODO: implement
+# Step 10 - bootstrap_sample
+def bootstrap_sample(features, labels, rng):
+    # draw a bootstrap sample of rows (with replacement) using rng.
+    x,y = np.zeros((len(features),len(features[0])),dtype = int) , np.zeros(len(labels),dtype = int)
+    for i in range(len(labels)):
+        j = rng.integers(len(labels))
+        x[i] = features[j]
+        y[i] = labels[j] 
+    return x,y
 
 # Step 11 - feature_subset (not yet solved)
 # TODO: implement
